@@ -16,6 +16,9 @@ import java.util.logging.Logger;
 @Service
 public class PedidoService {
 
+    /*
+    * Lectura del mocky url nuevo generado dado la no disponibilidad del proporcionado en el documento
+    * */
     @Value("${soap.service.url}")
     private String SOAP_ENDPOINT;
 
