@@ -59,8 +59,25 @@ public class PedidoService {
 
 
     private String convertXmlToJson(String xmlResponse) {
+        // Convertir XML a JSONObject
         JSONObject jsonObject = XML.toJSONObject(xmlResponse);
-        return jsonObject.toString(4);
+
+        // Extraer los datos necesarios navegando en la estructura JSON
+        JSONObject body = jsonObject.getJSONObject("soapenv:Envelope")
+                .getJSONObject("soapenv:Body")
+                .getJSONObject("env:EnvioPedidoAcmeResponse")
+                .getJSONObject("EnvioPedidoResponse");
+
+        // Construir la respuesta final con el formato correcto
+        JSONObject formattedResponse = new JSONObject();
+        JSONObject enviarPedidoRespuesta = new JSONObject();
+
+        enviarPedidoRespuesta.put("codigoEnvio", body.getInt("Codigo"));
+        enviarPedidoRespuesta.put("estado", body.getString("Mensaje"));
+
+        formattedResponse.put("enviarPedidoRespuesta", enviarPedidoRespuesta);
+
+        return formattedResponse.toString(4); // Indentación para que sea más legible
     }
     private final RestTemplate restTemplate;
 
