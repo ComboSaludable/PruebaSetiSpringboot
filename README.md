@@ -132,12 +132,3 @@ docker-compose up --build
 ```
 
 Esto iniciará el servicio en el puerto **8080**.
-
-## 📜 Licencia
-
-Este proyecto es de código abierto y se distribuye bajo la licencia **MIT**.
-
----
-
-🚀 **¡Listo! Ahora puedes usar y desplegar esta API sin problemas.**
-
